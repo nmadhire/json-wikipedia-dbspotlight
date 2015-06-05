@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.dbpedia.spotlight.ParagraphLink;
 import com.google.gson.Gson;
 
 /**
@@ -62,7 +63,7 @@ public class Article {
 	protected String redirect;
 	private List<String> sections;
 	private List<String> paragraphs;
-	private Map<String, List<Link>> paragraphsLink;
+	private List<ParagraphLink> paragraphsLink;
 	private List<Link> categories;
 	private List<Template> templates;
 	private List<String> templatesSchema;
@@ -692,12 +693,15 @@ public class Article {
 		return "NULL";
 
 	}
-	public Map<String, List<Link>> getParagraphsLink() {
+
+	public List<ParagraphLink> getParagraphsLink() {
 		return paragraphsLink;
 	}
 
-	public void setParagraphsLink(Map<String, List<Link>> paragraphsLink) {
+	public void setParagraphsLink(List<ParagraphLink> paragraphsLink) {
 		this.paragraphsLink = paragraphsLink;
 	}
+	
+	
 
 }

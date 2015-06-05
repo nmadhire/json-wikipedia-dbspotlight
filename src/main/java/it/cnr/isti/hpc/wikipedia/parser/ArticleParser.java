@@ -32,6 +32,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dbpedia.spotlight.ParagraphLink;
+
 import de.tudarmstadt.ukp.wikipedia.parser.Content;
 import de.tudarmstadt.ukp.wikipedia.parser.ContentElement;
 import de.tudarmstadt.ukp.wikipedia.parser.DefinitionList;
@@ -415,20 +417,25 @@ public class ArticleParser {
 
 	private void setParagraphs(Article article, ParsedPage page) {
 		List<String> paragraphs = new ArrayList<String>(page.nrOfParagraphs());
-		Map<String, List<Link>> paraLinks 
-					= new LinkedHashMap<String, List<Link>>();
+		List<ParagraphLink> paraLinks 
+					= new ArrayList<ParagraphLink>();
 		for (Paragraph p : page.getParagraphs()) {
 			String text = p.getText();
+			ParagraphLink paragraphLink = new ParagraphLink();
 			List<Link> links = new ArrayList<Link>();
 			// text = removeTemplates(text);
 			text = text.replace("\n", " ").trim();
+			
+			//Logic to Add the Paragraphs and Links associated with it in a JSON Element.
 			if (!text.isEmpty()){
 				paragraphs.add(text);
 				for(de.tudarmstadt.ukp.wikipedia.parser.Link t: p.getLinks()){
 					if (t.getType() == de.tudarmstadt.ukp.wikipedia.parser.Link.type.INTERNAL)
 						links.add(new Link(t.getTarget(), t.getText(), t.getPos().getStart(), t.getPos().getEnd()));
 				}
-				paraLinks.put(text, links);
+				paragraphLink.setParaText(text);
+				paragraphLink.setLinks(links);
+				paraLinks.add(paragraphLink);
 			}
 		}
 		article.setParagraphs(paragraphs);
