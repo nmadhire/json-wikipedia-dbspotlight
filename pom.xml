@@ -29,17 +29,19 @@
 			<artifactId>hpc-utils</artifactId>
 			<groupId>it.cnr.isti.hpc</groupId>
 			<version>0.0.5</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>info.bliki.wiki</groupId>
+			<artifactId>bliki-core</artifactId>
+			<version>3.0.16</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope> test </scope>
-		</dependency>
-		<dependency>
-			<groupId>info.bliki.wiki</groupId>
-			<artifactId>bliki-core</artifactId>
-			<version>3.0.16</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
