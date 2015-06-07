@@ -20,7 +20,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import com.dbpedia.spotlight.ParagraphLink;
+import org.dbpedia.spotlight.ParagraphLink;
+
 import com.google.gson.Gson;
 
 /**

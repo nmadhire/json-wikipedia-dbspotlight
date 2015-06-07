@@ -15,10 +15,11 @@
  */
 package it.cnr.isti.hpc.wikipedia.parser;
 
+import org.dbpedia.spotlight.mediawiki.MediaWikiParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.tudarmstadt.ukp.wikipedia.parser.mediawiki.MediaWikiParser;
+
 
 /**
  * Generates the MediaWikiParser given a language.

@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.dbpedia.spotlight;
+package org.dbpedia.spotlight;
 
 import it.cnr.isti.hpc.wikipedia.article.Link;
 

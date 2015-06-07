@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.dbpedia.spotlight.ParagraphLink;
+import org.dbpedia.spotlight.mediawiki.MediaWikiParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.dbpedia.spotlight.ParagraphLink;
 
 import de.tudarmstadt.ukp.wikipedia.parser.Content;
 import de.tudarmstadt.ukp.wikipedia.parser.ContentElement;
@@ -43,7 +43,7 @@ import de.tudarmstadt.ukp.wikipedia.parser.Paragraph;
 import de.tudarmstadt.ukp.wikipedia.parser.ParsedPage;
 import de.tudarmstadt.ukp.wikipedia.parser.Section;
 import de.tudarmstadt.ukp.wikipedia.parser.Span;
-import de.tudarmstadt.ukp.wikipedia.parser.mediawiki.MediaWikiParser;
+
 
 /**
  * Generates a Mediawiki parser given a language, (it will expect to find a

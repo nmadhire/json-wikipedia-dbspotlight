@@ -15,7 +15,7 @@
  */
 package it.cnr.isti.hpc.wikipedia.parser;
 
-import de.tudarmstadt.ukp.wikipedia.parser.mediawiki.MediaWikiParserFactory;
+import org.dbpedia.spotlight.mediawiki.MediaWikiParserFactory;
 
 /**
  * Generates a parser from the proper Locale.
