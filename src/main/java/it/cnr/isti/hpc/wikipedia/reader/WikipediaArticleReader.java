@@ -19,7 +19,6 @@ package it.cnr.isti.hpc.wikipedia.reader;
 import info.bliki.wiki.dump.IArticleFilter;
 import info.bliki.wiki.dump.Siteinfo;
 import info.bliki.wiki.dump.WikiArticle;
-import info.bliki.wiki.dump.WikiXMLParser;
 import it.cnr.isti.hpc.benchmark.Stopwatch;
 import it.cnr.isti.hpc.io.IOUtils;
 import it.cnr.isti.hpc.log.ProgressLogger;
@@ -31,6 +30,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 
+import org.dbpedia.spotlight.parser.WikiXMLParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -53,7 +53,9 @@ public class WikipediaArticleReader {
 
 	private WikiXMLParser wxp;
 	private BufferedWriter out;
-
+	
+	private String JsonOutput;
+	private boolean JsonFile = true;
 	private ArticleParser parser;
 	// private JsonRecordParser<Article> encoder;
 
@@ -97,6 +99,7 @@ public class WikipediaArticleReader {
 	 * 
 	 */
 	public WikipediaArticleReader(File inputFile, File outputFile, String lang) {
+		JsonFile = true;
 		JsonConverter handler = new JsonConverter();
 		// encoder = new JsonRecordParser<Article>(Article.class);
 		parser = new ArticleParser(lang);
@@ -111,15 +114,52 @@ public class WikipediaArticleReader {
 				.getAbsolutePath());
 
 	}
+	
+	/**
+	 * Generates a converter from the xml to json dump.
+	 * 
+	 * @param inputFile
+	 *            - String
+	 * @param outputFile
+	 *            - JSON output in String
+	 * 
+	 * @param lang
+	 *            - the language of the dump
+	 * 
+	 * 
+	 */
+	
+	public WikipediaArticleReader(String XMLInput, String lang) {
+		JsonFile = false;
+		JsonConverter handler = new JsonConverter();
 
+		parser = new ArticleParser(lang);
+		try {
+			wxp = new WikiXMLParser(XMLInput, handler, JsonFile);
+		} catch (Exception e) {
+			logger.error("creating the parser {}", e.toString());
+			System.exit(-1);
+		}
+
+	}
+	
 	/**
 	 * Starts the parsing
 	 */
 	public void start() throws IOException, SAXException {
 
 		wxp.parse();
-		out.close();
+		if (JsonFile)
+			out.close();
 		logger.info(sw.stat("articles"));
+	}
+
+	public String getJsonOutput() {
+		return JsonOutput;
+	}
+
+	public void setJsonOutput(String jsonOutput) {
+		JsonOutput = jsonOutput;
 	}
 
 	private class JsonConverter implements IArticleFilter {
@@ -167,8 +207,12 @@ public class WikipediaArticleReader {
 			parser.parse(article, page.getText());
 
 			try {
-				out.write(article.toJson());
-				out.write("\n");
+				if (JsonFile){
+					out.write(article.toJson());
+					out.write("\n");
+				}
+				else
+					setJsonOutput(article.toJson());
 			} catch (IOException e) {
 				logger.error("writing the output file {}", e.toString());
 				System.exit(-1);
