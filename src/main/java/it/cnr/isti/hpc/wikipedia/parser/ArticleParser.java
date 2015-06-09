@@ -17,6 +17,7 @@ package it.cnr.isti.hpc.wikipedia.parser;
 
 import it.cnr.isti.hpc.wikipedia.article.Article;
 import it.cnr.isti.hpc.wikipedia.article.Article.Type;
+import it.cnr.isti.hpc.wikipedia.article.ArticleSummarizer;
 import it.cnr.isti.hpc.wikipedia.article.Language;
 import it.cnr.isti.hpc.wikipedia.article.Link;
 import it.cnr.isti.hpc.wikipedia.article.Table;
@@ -344,7 +345,7 @@ public class ArticleParser {
 			}
 		}
 		article.setLinks(links);
-		article.setExternalLinks(elinks);
+		//article.setExternalLinks(elinks);
 	}
 
 	private void setTemplates(Article article, ParsedPage page) {
@@ -361,7 +362,7 @@ public class ArticleParser {
 				templates.add(new Template(t.getName(), templateParameters));
 			}
 		}
-		article.setTemplates(templates);
+		//article.setTemplates(templates);
 
 	}
 
@@ -384,7 +385,7 @@ public class ArticleParser {
 				continue;
 			}
 		}
-		article.addTemplatesSchema(schema);
+		//article.addTemplatesSchema(schema);
 
 	}
 
@@ -395,7 +396,7 @@ public class ArticleParser {
 
 			categories.add(new Link(c.getTarget(), c.getText(), c.getPos().getStart(), c.getPos().getEnd()));
 		}
-		article.setCategories(categories);
+		//article.setCategories(categories);
 
 	}
 
@@ -411,7 +412,7 @@ public class ArticleParser {
 			}
 
 		}
-		article.setHighlights(highlights);
+		//article.setHighlights(highlights);
 
 	}
 
@@ -419,13 +420,15 @@ public class ArticleParser {
 		List<String> paragraphs = new ArrayList<String>(page.nrOfParagraphs());
 		List<ParagraphLink> paraLinks 
 					= new ArrayList<ParagraphLink>();
+		StringBuilder wikiText = new StringBuilder();
+		ArticleSummarizer articleSummarizer = new ArticleSummarizer();
 		for (Paragraph p : page.getParagraphs()) {
 			String text = p.getText();
 			ParagraphLink paragraphLink = new ParagraphLink();
 			List<Link> links = new ArrayList<Link>();
 			// text = removeTemplates(text);
 			text = text.replace("\n", " ").trim();
-			
+			wikiText.append(articleSummarizer.cleanWikiText(text));
 			//Logic to Add the Paragraphs and Links associated with it in a JSON Element.
 			if (!text.isEmpty()){
 				paragraphs.add(text);
@@ -440,6 +443,7 @@ public class ArticleParser {
 		}
 		article.setParagraphs(paragraphs);
 		article.setParagraphsLink(paraLinks);
+		article.setWikiText(wikiText.toString());
 	}
 
 	private void setLists(Article article, ParsedPage page) {
@@ -468,13 +472,13 @@ public class ArticleParser {
 				a.setType(Type.DISAMBIGUATION);
 				return;
 			}
-			for (Template t : a.getTemplates()) {
+			/*for (Template t : a.getTemplates()) {
 				if (StringUtils.equalsIgnoreCase(t.getName(), disambiguation)) {
 					a.setType(Type.DISAMBIGUATION);
 					return;
 
 				}
-			}
+			}*/
 
 		}
 	}

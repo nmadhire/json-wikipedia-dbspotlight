@@ -202,7 +202,7 @@ public class WikipediaArticleReader {
 			article.setWikiId(Integer.parseInt(id));
 			article.setNamespace(namespace);
 			article.setIntegerNamespace(integerNamespace);
-			article.setTimestamp(timestamp);
+			//article.setTimestamp(timestamp);
 			article.setType(type);
 			parser.parse(article, page.getText());
 

@@ -49,26 +49,27 @@ public class Article {
 	protected String wikiTitle = NOTITLE;
 
 	private int wid;
-
+	
+	private String wikiText;
 	private String lang;
-	private String namespace;
-	private Integer integerNamespace;
-	private String timestamp;
+	private transient String namespace;
+	private transient Integer integerNamespace;
+	private transient String timestamp;
 	private Type type = Type.ARTICLE;
 	private String enWikiTitle;
 	private List<Table> tables;
 	private List<Link> images;
 	protected List<List<String>> lists;
 	private List<Link> links;
-	private List<Link> externalLinks;
+	private transient List<Link> externalLinks;
 	protected String redirect;
-	private List<String> sections;
-	private List<String> paragraphs;
+	private transient List<String> sections;
+	private transient List<String> paragraphs;
 	private List<ParagraphLink> paragraphsLink;
-	private List<Link> categories;
-	private List<Template> templates;
-	private List<String> templatesSchema;
-	private List<String> highlights;
+	private transient List<Link> categories;
+	private transient List<Template> templates;
+	private transient List<String> templatesSchema;
+	private transient List<String> highlights;
 	private transient String summary;
 	private Template infobox;
 
@@ -701,6 +702,14 @@ public class Article {
 
 	public void setParagraphsLink(List<ParagraphLink> paragraphsLink) {
 		this.paragraphsLink = paragraphsLink;
+	}
+
+	public String getWikiText() {
+		return wikiText;
+	}
+
+	public void setWikiText(String wikiText) {
+		this.wikiText = wikiText;
 	}
 	
 	
