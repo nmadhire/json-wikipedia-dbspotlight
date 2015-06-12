@@ -48,7 +48,9 @@ public class Locale {
 		} catch (IOException e) {
 			logger.error("readling the locale for language {} ({})", lang,
 					e.toString());
-			System.exit(-1);
+			//Commenting the exit statement to not fail the program if there are no 
+			//corresponding language files
+			//System.exit(-1);
 		}
 		
 		logger.info("using {} language ",properties.get("language"));
