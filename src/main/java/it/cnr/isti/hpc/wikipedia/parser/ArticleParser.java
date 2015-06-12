@@ -166,8 +166,10 @@ public class ArticleParser {
 	}
 
 	private void setRedirect(Article article) {
-		if (!article.getRedirect().isEmpty())
+		if (!article.getRedirect().isEmpty()){
+			article.setRedirect("");
 			return;
+		}
 		List<List<String>> lists = article.getLists();
 		if ((!lists.isEmpty()) && (! lists.get(0).isEmpty())) {
 			// checking only first item in first list
@@ -226,6 +228,8 @@ public class ArticleParser {
 				article.setRedirect(r);
 				article.setType(Type.REDIRECT);
 			}
+			else
+				article.setRedirect("");
 
 	}
 

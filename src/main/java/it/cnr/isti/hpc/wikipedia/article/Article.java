@@ -57,9 +57,9 @@ public class Article {
 	private transient String timestamp;
 	private Type type = Type.ARTICLE;
 	private String enWikiTitle;
-	private List<Table> tables;
-	private List<Link> images;
-	protected List<List<String>> lists;
+	private transient List<Table> tables;
+	private transient List<Link> images;
+	protected transient List<List<String>> lists;
 	private List<Link> links;
 	private transient List<Link> externalLinks;
 	protected String redirect;
@@ -71,7 +71,7 @@ public class Article {
 	private transient List<String> templatesSchema;
 	private transient List<String> highlights;
 	private transient String summary;
-	private Template infobox;
+	private transient Template infobox;
 
 	public List<String> getTemplatesSchema() {
 		if (templatesSchema == null)
