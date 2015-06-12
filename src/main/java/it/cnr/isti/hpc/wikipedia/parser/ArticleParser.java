@@ -76,14 +76,14 @@ public class ArticleParser {
 		this.lang = lang;
 		parser = parserFactory.getParser(lang);
 		locale = new Locale(lang);
-		redirects = locale.getRedirectIdentifiers();
+		redirects = locale.getRedirects(lang);
 
 	}
 
 	public ArticleParser() {
 		parser = parserFactory.getParser(lang);
 		locale = new Locale(lang);
-		redirects = locale.getRedirectIdentifiers();
+		redirects = locale.getRedirects(lang);
 
 	}
 
@@ -102,7 +102,6 @@ public class ArticleParser {
 			logger.warn("page is null for article {}", article.getTitle());
 		} else {
 			setParagraphs(article, page);
-			// setShortDescription(article);
 			setTemplates(article, page);
 			setLinks(article, page);
 			setCategories(article, page);
