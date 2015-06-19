@@ -37,11 +37,14 @@ import org.xml.sax.SAXException;
 
 public class WikiParserTest {
 	
+	/*
+	 * Test Cases for checking the links parsing.
+	 */
 	@Test
 	public void testSpans() throws UnsupportedEncodingException, FileNotFoundException, IOException, SAXException {
 		
 		URL mediaWiki = Thread.currentThread().getContextClassLoader().getResource("wikisample.xml");
-		//assertNotNull(mediaWiki);
+		assertNotNull(mediaWiki);
 		System.out.println("MediaWiki:" + mediaWiki);
 		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/tmp/wikisample.json", Language.EN);
 		wap.start();
@@ -65,5 +68,44 @@ public class WikiParserTest {
 		}
 		
 	}
+	
+	/*
+	 * Test Case for Checking the Type of WikiPage,WikiTitle
+	 */
+	
+	@Test
+	public void testWikiPage() throws UnsupportedEncodingException, FileNotFoundException, IOException, SAXException {
+		
+		URL mediaWiki = Thread.currentThread().getContextClassLoader().getResource("wikisample_oneArticle.xml");
+		assertNotNull(mediaWiki);
+		System.out.println("MediaWiki:" + mediaWiki);
+		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/tmp/wikisample.json", Language.EN);
+		wap.start();
+		String json = IOUtils.getFileAsUTF8String("/tmp/wikisample.json");
+		
+		Article a = Article.fromJson(json);
+		assertEquals("Anarchism",a.getWikiTitle());
+		assertEquals("Article",a.getType());
+		
+	}
 
+	/*
+	 * Test case for Redirects
+	 */
+	@Test
+	public void testWikiRedirect() throws UnsupportedEncodingException, FileNotFoundException, IOException, SAXException {
+		
+		URL mediaWiki = Thread.currentThread().getContextClassLoader().getResource("wikisample_Redirect.xml");
+		assertNotNull(mediaWiki);
+		System.out.println("MediaWiki:" + mediaWiki);
+		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/tmp/wikisample.json", Language.EN);
+		wap.start();
+		String json = IOUtils.getFileAsUTF8String("/tmp/wikisample.json");
+		
+		Article a = Article.fromJson(json);
+		assertEquals("AfghanistanHistory",a.getWikiTitle());
+		assertEquals("Redirect",a.getType());
+		assertEquals("History of Afghanistan",a.getRedirect());
+		
+	}
 }
