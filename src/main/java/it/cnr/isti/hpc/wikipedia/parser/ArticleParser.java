@@ -430,7 +430,8 @@ public class ArticleParser {
 			ParagraphLink paragraphLink = new ParagraphLink();
 			List<Link> links = new ArrayList<Link>();
 			// text = removeTemplates(text);
-			text = text.replace("\n", " ").trim();
+			//text = text.replace("\n", " ").trim();
+			text = text.replace("\n", " ");
 			wikiText.append(articleSummarizer.cleanWikiText(text));
 			//Logic to Add the Paragraphs and Links associated with it in a JSON Element.
 			if (!text.isEmpty()){

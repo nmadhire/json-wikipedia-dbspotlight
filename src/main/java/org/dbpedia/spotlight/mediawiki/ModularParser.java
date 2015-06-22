@@ -383,13 +383,15 @@ public class ModularParser implements MediaWikiParser,
 		
 		sm.removeManagedList(cepp.templateSpans);
 		// Parsing all other Tags
+		System.out.println("Naveen Before parsing tags: " + sm.toString());
 		parseTags(sm, cepp.tagSpans);
 
 		// Converting &lt;gallery>s to normal Images, this is not beautiful, but
 		// a simple solution..
+		System.out.println("Naveen Before gallery convert: " + sm.toString());
 		convertGalleriesToImages(sm, cepp.tagSpans);
-		
 		// Parsing Links and Images.
+		System.out.println("Naveen Before parsing: " + sm.toString());
 		parseImagesAndInternalLinks(sm, cepp.linkSpans, cepp.links);
 		// Creating a list of Line Spans to work with lines in the following
 		// functions
@@ -922,15 +924,33 @@ public class ModularParser implements MediaWikiParser,
 		sm.manageList(spans);
 
 		Span s = new Span(0, 0);
+		Stack<Span> tagSpans = new Stack<Span>();
+		
 		while ((s = getTag(sm, s.getEnd())) != null)
 		{
-			spans.add(s);
+		    System.out.println("Naveen Tag Span: " + sm.substring(s));
+			//spans.add(s);
+		    if(sm.substring(s.getStart(), s.getEnd()).contains("/>")){
+		        spans.add(s);
+		        continue;
+		    }
+		        
+			if(sm.substring(s.getStart(), s.getEnd()).contains("/")){
+			    if (!tagSpans.empty())
+			        spans.add(new Span(tagSpans.pop().getStart(),s.getEnd()));
+			}
+			else
+			    tagSpans.push(s);
 		}
 
 		if (spans.size() == 0)
 		{
 			sm.removeManagedList(spans);
 		}
+		
+		for (Span span : spans)
+		    sm.delete(span);
+		
 	}
 
 	private void parseTemplates(SpanManager sm,

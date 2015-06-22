@@ -38,7 +38,7 @@ public class Link {
 	public Link(String id, String description, int start, int end) {
 		super();
 		this.id = id;
-		this.description = description;
+		setDescription(description);
 		this.start = start;
 		this.end = end;
 	}
@@ -63,7 +63,14 @@ public class Link {
 	
 	
 	public void setDescription(String description) {
-		this.description = description;
+	    // Some links do not have any anchor
+	    // For those cases the anchor is the same wikipedia Id
+	    if (description==""){
+	        this.description = this.id.replace("_", " ");
+	    }
+	    else{
+	        this.description = description;
+	    }
 	}
 
 	/**  
