@@ -166,10 +166,13 @@ public class ArticleParser {
 	}
 
 	private void setRedirect(Article article) {
+		
+		/*
+		 * Commenting this to compute the Redirect links
 		if (!article.getRedirect().isEmpty()){
 			article.setRedirect("");
 			return;
-		}
+		} */
 		List<List<String>> lists = article.getLists();
 		if ((!lists.isEmpty()) && (! lists.get(0).isEmpty())) {
 			// checking only first item in first list

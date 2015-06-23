@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import it.cnr.isti.hpc.io.IOUtils;
 import it.cnr.isti.hpc.wikipedia.article.Article;
+import it.cnr.isti.hpc.wikipedia.article.Article.Type;
 import it.cnr.isti.hpc.wikipedia.article.Language;
 import it.cnr.isti.hpc.wikipedia.article.Link;
 import it.cnr.isti.hpc.wikipedia.reader.WikipediaArticleReader;
@@ -46,9 +47,9 @@ public class WikiParserTest {
 		URL mediaWiki = Thread.currentThread().getContextClassLoader().getResource("wikisample.xml");
 		assertNotNull(mediaWiki);
 		System.out.println("MediaWiki:" + mediaWiki);
-		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/temp/wikisample.json", Language.EN);
+		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/tmp/wikisample.json", Language.EN);
 		wap.start();
-		String [] json = IOUtils.getFileAsUTF8String("/temp/wikisample.json").split("\n");
+		String [] json = IOUtils.getFileAsUTF8String("/tmp/wikisample.json").split("\n");
 		
 		for(int i =0; i < json.length; i++){
 			Article a = Article.fromJson(json[i]);
@@ -96,7 +97,7 @@ public class WikiParserTest {
 		
 		Article a = Article.fromJson(json);
 		assertEquals("Anarchism",a.getWikiTitle());
-		assertEquals("Article",a.getType());
+		assertEquals(Type.ARTICLE,a.getType());
 		
 	}
 
@@ -115,8 +116,8 @@ public class WikiParserTest {
 		
 		Article a = Article.fromJson(json);
 		assertEquals("AfghanistanHistory",a.getWikiTitle());
-		assertEquals("Redirect",a.getType());
-		assertEquals("History of Afghanistan",a.getRedirect());
+		assertEquals(Type.REDIRECT,a.getType());
+		assertEquals("History_of_Afghanistan",a.getRedirect());
 		
 	}
 }

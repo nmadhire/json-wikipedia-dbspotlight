@@ -200,7 +200,16 @@ public class MediaWikiParserFactory {
 		languageIdentifers.add("vec");languageIdentifers.add("vls");
 		languageIdentifers.add("war");
 		languageIdentifers.add("xal");
-
+		
+		//Adding few more language identifiers which were identified during testing
+		languageIdentifers.add("arz");
+		languageIdentifers.add("mwl");
+		languageIdentifers.add("sah");
+		languageIdentifers.add("zh-yue");
+		languageIdentifers.add("zh-min-nan");
+		languageIdentifers.add("diq");
+		languageIdentifers.add("be-x-old");
+		languageIdentifers.add("bat-smg");
 		languageIdentifers.add("simple");
 	}
 

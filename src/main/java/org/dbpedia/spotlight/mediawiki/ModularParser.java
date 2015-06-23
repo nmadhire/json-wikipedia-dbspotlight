@@ -930,6 +930,7 @@ public class ModularParser implements MediaWikiParser,
 		{
 		    System.out.println("Naveen Tag Span: " + sm.substring(s));
 			//spans.add(s);
+		    //Logic to remove ref tags such as <ref> </ref> from the Article text
 		    if(sm.substring(s.getStart(), s.getEnd()).contains("/>")){
 		        spans.add(s);
 		        continue;
