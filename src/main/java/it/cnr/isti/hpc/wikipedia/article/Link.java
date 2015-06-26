@@ -65,7 +65,7 @@ public class Link {
 	public void setDescription(String description) {
 	    // Some links do not have any anchor
 	    // For those cases the anchor is the same wikipedia Id
-	    if (description==""){
+	    if (description.equals("")){
 	        this.description = this.id.replace("_", " ");
 	    }
 	    else{

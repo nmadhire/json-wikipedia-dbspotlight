@@ -383,15 +383,15 @@ public class ModularParser implements MediaWikiParser,
 		
 		sm.removeManagedList(cepp.templateSpans);
 		// Parsing all other Tags
-		System.out.println("Naveen Before parsing tags: " + sm.toString());
+		//System.out.println("Naveen Before parsing tags: " + sm.toString());
 		parseTags(sm, cepp.tagSpans);
 
 		// Converting &lt;gallery>s to normal Images, this is not beautiful, but
 		// a simple solution..
-		System.out.println("Naveen Before gallery convert: " + sm.toString());
+		//System.out.println("Naveen Before gallery convert: " + sm.toString());
 		convertGalleriesToImages(sm, cepp.tagSpans);
 		// Parsing Links and Images.
-		System.out.println("Naveen Before parsing: " + sm.toString());
+		//System.out.println("Naveen Before parsing: " + sm.toString());
 		parseImagesAndInternalLinks(sm, cepp.linkSpans, cepp.links);
 		// Creating a list of Line Spans to work with lines in the following
 		// functions
@@ -928,7 +928,7 @@ public class ModularParser implements MediaWikiParser,
 		
 		while ((s = getTag(sm, s.getEnd())) != null)
 		{
-		    System.out.println("Naveen Tag Span: " + sm.substring(s));
+		    //System.out.println("Naveen Tag Span: " + sm.substring(s));
 			//spans.add(s);
 		    //Logic to remove ref tags such as <ref> </ref> from the Article text
 		    if(sm.substring(s.getStart(), s.getEnd()).contains("/>")){
