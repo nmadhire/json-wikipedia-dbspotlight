@@ -19,29 +19,11 @@ or
 
 	./scripts/convert-xml-dump-to-json.sh [en|it] wikipedia-dump.xml.bz wikipedia-dump.json[.gz]
 
-produces in `wikipedia-dump.json` the JSON version of the dump ([here you can find an example](https://dl.dropboxusercontent.com/u/4663256/tmp/json-wikipedia-sample.json)). Each line of the file contains an article 
-of dump encoded in JSON. Each JSON line can be deserialized in an [Article](http://sassicaia.isti.cnr.it/javadocs/json-wikipedia/it/cnr/isti/hpc/wikipedia/article/Article.html) object, 
+produces in `wikipedia-dump.json` the JSON version of the dump. Each line of the file contains an article 
+of dump encoded in JSON. Each JSON line can be deserialized in an **Article** object, 
 which represents an 
-_enriched_ version of the wikitext page. The Article object contains: 
+_enriched_ version of the wikitext page.
 
-
-  * the title (e.g., Leonardo Da Vinci);
-  * the wikititle (used in Wikipedia as key, e.g., Leonardo\_Da\_Vinci);
-  * the namespace and the integer namespace in the dump;
-  * the timestamp of the article;
-  * the type, if it is a standard article, a redirection, a category and so on;
-  * if it is not in English the title of the correspondent English Article;
-  * a list of  tables that appear in the article ;
-  * a list of lists that  that appear in the article ;
-  * a list  of internal links that appear in the article;
-  * a list of external links that appear in the article;
-  * if the article  is a redirect, the pointed article;
-  * a list of section titles in the article;
-  * the text of the article, divided in paragraphs (PLAIN, no wikitext);
-  * the categories and the templates of the articles;
-  * the list of attributes found in the templates;
-  * a list of terms highlighted in the article;
-  * if present, the infobox. 
   
 #### Usage ####
 
@@ -78,54 +60,30 @@ and import the project in your new maven project adding the dependency:
 #### Schema ####
 
 ```
- |-- categories: array (nullable = true)
- |    |-- element: struct (containsNull = false)
- |    |    |-- description: string (nullable = true)
- |    |    |-- id: string (nullable = true)
- |-- externalLinks: array (nullable = true)
- |    |-- element: struct (containsNull = false)
- |    |    |-- description: string (nullable = true)
- |    |    |-- id: string (nullable = true)
- |-- highlights: array (nullable = true)
- |    |-- element: string (containsNull = false)
- |-- infobox: struct (nullable = true)
- |    |-- description: array (nullable = true)
- |    |    |-- element: string (containsNull = false)
- |    |-- name: string (nullable = true)
- |-- integerNamespace: integer (nullable = true)
+ root
+ |-- integerNamespace: long (nullable = true)
  |-- lang: string (nullable = true)
  |-- links: array (nullable = true)
- |    |-- element: struct (containsNull = false)
+ |    |-- element: struct (containsNull = true)
  |    |    |-- description: string (nullable = true)
+ |    |    |-- end: long (nullable = true)
  |    |    |-- id: string (nullable = true)
- |-- lists: array (nullable = true)
- |    |-- element: array (containsNull = false)
- |    |    |-- element: string (containsNull = false)
+ |    |    |-- start: long (nullable = true)
  |-- namespace: string (nullable = true)
- |-- paragraphs: array (nullable = true)
- |    |-- element: string (containsNull = false)
+ |-- paragraphsLink: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- links: array (nullable = true)
+ |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- description: string (nullable = true)
+ |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |-- id: string (nullable = true)
+ |    |    |    |    |-- start: long (nullable = true)
+ |    |    |-- paraText: string (nullable = true)
  |-- redirect: string (nullable = true)
- |-- sections: array (nullable = true)
- |    |-- element: string (containsNull = false)
- |-- tables: array (nullable = true)
- |    |-- element: struct (containsNull = false)
- |    |    |-- name: string (nullable = true)
- |    |    |-- numCols: integer (nullable = true)
- |    |    |-- numRows: integer (nullable = true)
- |    |    |-- table: array (nullable = true)
- |    |    |    |-- element: array (containsNull = false)
- |    |    |    |    |-- element: string (containsNull = false)
- |-- templates: array (nullable = true)
- |    |-- element: struct (containsNull = false)
- |    |    |-- description: array (nullable = true)
- |    |    |    |-- element: string (containsNull = false)
- |    |    |-- name: string (nullable = true)
- |-- templatesSchema: array (nullable = true)
- |    |-- element: string (containsNull = false)
- |-- timestamp: string (nullable = true)
  |-- title: string (nullable = true)
  |-- type: string (nullable = true)
- |-- wid: integer (nullable = true)
+ |-- wid: long (nullable = true)
+ |-- wikiText: string (nullable = true)
  |-- wikiTitle: string (nullable = true)
 ```
 
@@ -134,6 +92,4 @@ and import the project in your new maven project adding the dependency:
 
 [json]: http://www.json.org/fatfree.html "JSON: The Fat-Free Alternative to XML"
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/diegoceccarelli/json-wikipedia/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

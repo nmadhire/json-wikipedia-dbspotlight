@@ -298,6 +298,7 @@ public class ArticleParser {
 
 	protected void setEnWikiTitle(Article article, ParsedPage page) {
 		if (article.isLang(Language.EN)) {
+			article.setEnWikiTitle("");
 			return;
 		}
 		try {
