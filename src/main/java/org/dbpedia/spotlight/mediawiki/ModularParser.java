@@ -1632,15 +1632,22 @@ public class ModularParser implements MediaWikiParser,
 			}
 
 			Span posSpan = new Span(linkTextStart, linkEndTag).trim(sm);
-			linkSpans.add(posSpan);
+			
+			//Ignoring the blank links from the paragraphs
+			if (linkTarget.length() > 0)
+				linkSpans.add(posSpan);
 
 			Link l = new Link(null, posSpan, linkTarget, linkType, parameters);
-			links.add(l);
+			//Ignoring the blank links from the paragraphs
+			if (linkTarget.length() > 0){
+				links.add(l);
 
 			if (calculateSrcSpans)
 			{
 				l.setSrcSpan(new SrcSpan(sm.getSrcPos(linkStartTag), sm
 						.getSrcPos(linkEndTag + 2)));
+			}
+			
 			}
 
 			sm.delete(posSpan.getEnd(), linkEndTag + 2);

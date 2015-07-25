@@ -52,8 +52,8 @@ public class Article {
 	
 	private String wikiText;
 	private String lang;
-	private String namespace;
-	private Integer integerNamespace;
+	private transient String namespace;
+	private transient Integer integerNamespace;
 	private transient String timestamp;
 	private Type type = Type.ARTICLE;
 	private String enWikiTitle;
