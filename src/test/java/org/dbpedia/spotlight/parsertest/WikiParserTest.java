@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.dbpedia.spotlight.ParagraphLink;
@@ -54,6 +55,8 @@ public class WikiParserTest {
 		for(int i =0; i < json.length; i++){
 			Article a = Article.fromJson(json[i]);
 			List<ParagraphLink> paraLinks = a.getParagraphsLink();
+			List<Link> iLinks = a.getLinks();
+			String wikiText = a.getWikiText();
 			int totalLinks = a.getLinks().size();
 			int paraLinksCount = 0;
 			for(ParagraphLink l: paraLinks){
@@ -74,6 +77,12 @@ public class WikiParserTest {
 				    if (link.getStart()!=link.getEnd())
 				        assertEquals(link.getDescription(), paraText.substring(link.getStart(), link.getEnd()));
 				}
+			}
+			
+			//Adding test case to Check for all internal links
+			for (Link l: iLinks){
+				if(l.getStart()!=l.getEnd())
+					assertEquals(l.getDescription(), wikiText.substring(l.getStart(), l.getEnd()));
 			}
 			//TestCase for checking the total Links in the WikiArticle
 			//assertEquals(paraLinksCount, totalLinks);
