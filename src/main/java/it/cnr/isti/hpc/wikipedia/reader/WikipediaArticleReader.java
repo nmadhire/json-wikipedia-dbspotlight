@@ -170,7 +170,7 @@ public class WikipediaArticleReader {
 			String id = page.getId();
 			String namespace = page.getNamespace();
 			Integer integerNamespace = page.getIntegerNamespace();
-			String timestamp = page.getTimeStamp();
+			//String timestamp = page.getTimeStamp();
 
 			Type type = Type.UNKNOWN;
 			if (page.isCategory())

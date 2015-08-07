@@ -30,7 +30,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.dbpedia.spotlight.ParagraphLink;
@@ -47,7 +46,6 @@ public class WikiParserTest {
 		
 		URL mediaWiki = Thread.currentThread().getContextClassLoader().getResource("wikisample.xml");
 		assertNotNull(mediaWiki);
-		System.out.println("MediaWiki:" + mediaWiki);
 		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/tmp/wikisample.json", Language.EN);
 		wap.start();
 		String [] json = IOUtils.getFileAsUTF8String("/tmp/wikisample.json").split("\n");
@@ -59,33 +57,26 @@ public class WikiParserTest {
 			String wikiText = a.getWikiText();
 			int totalLinks = a.getLinks().size();
 			int paraLinksCount = 0;
+
 			for(ParagraphLink l: paraLinks){
 				String paraText = l.getParaText();
 				List<Link> links = l.getLinks();
 				paraLinksCount+=links.size();
 				for(Link link: links){
-				    
-				    if(link.getDescription().equals(paraText.substring(link.getStart(), link.getEnd())))
-				        continue;
-				    else{
-				        System.out.println("Para Text: " + paraText);
-				        System.out.println("Link Desc: " + link.getDescription());
-				        System.out.println("Start : " + link.getStart());
-				        System.out.println("End : " + link.getEnd());
-				    }
-				        
-				    if (link.getStart()!=link.getEnd())
+				    if (wikiText.length() > 0)
 				        assertEquals(link.getDescription(), paraText.substring(link.getStart(), link.getEnd()));
 				}
 			}
 			
-			//Adding test case to Check for all internal links
+			//Adding test case to Check for all internal links against the Wiki Text
 			for (Link l: iLinks){
-				if(l.getStart()!=l.getEnd())
+				
+				if(wikiText.length() > 0)
 					assertEquals(l.getDescription(), wikiText.substring(l.getStart(), l.getEnd()));
 			}
-			//TestCase for checking the total Links in the WikiArticle
-			//assertEquals(paraLinksCount, totalLinks);
+			
+			//TestCase for checking the total Links against the individual para links in the WikiArticle
+			assertEquals(paraLinksCount, totalLinks);
 		}
 		
 	}

@@ -17,17 +17,14 @@ package it.cnr.isti.hpc.wikipedia.parser;
 
 import it.cnr.isti.hpc.wikipedia.article.Article;
 import it.cnr.isti.hpc.wikipedia.article.Article.Type;
-import it.cnr.isti.hpc.wikipedia.article.ArticleSummarizer;
 import it.cnr.isti.hpc.wikipedia.article.Language;
 import it.cnr.isti.hpc.wikipedia.article.Link;
 import it.cnr.isti.hpc.wikipedia.article.Table;
 import it.cnr.isti.hpc.wikipedia.article.Template;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dbpedia.spotlight.ParagraphLink;
@@ -103,7 +100,9 @@ public class ArticleParser {
 		} else {
 			setParagraphs(article, page);
 			setTemplates(article, page);
-			setLinks(article, page);
+			
+			//Commenting the logic as links are computed in setParagraphs method
+			//setLinks(article, page);
 			setCategories(article, page);
 			setHighlights(article, page);
 			setSections(article, page);
@@ -333,7 +332,10 @@ public class ArticleParser {
 		article.setSections(sections);
 
 	}
-
+	
+	/*
+	 * Commenting the unnecessary code since the links are computed in the at the time of individual paragraph processing
+	 * Check setParagraph method for more details.
 	private void setLinks(Article article, ParsedPage page) {
 
 		List<Link> links = new ArrayList<Link>(10);
@@ -354,7 +356,8 @@ public class ArticleParser {
 		article.setLinks(links);
 		//article.setExternalLinks(elinks);
 	}
-
+	
+	*/
 	private void setTemplates(Article article, ParsedPage page) {
 		List<Template> templates = new ArrayList<Template>(10);
 
@@ -428,30 +431,49 @@ public class ArticleParser {
 		List<ParagraphLink> paraLinks 
 					= new ArrayList<ParagraphLink>();
 		StringBuilder wikiText = new StringBuilder();
-		ArticleSummarizer articleSummarizer = new ArticleSummarizer();
+		//ArticleSummarizer articleSummarizer = new ArticleSummarizer();
+		List<Link> iLinks = new ArrayList<Link>();
+		int i=0;
+		String prevPara = null;
+		int paraLength = 0;
 		for (Paragraph p : page.getParagraphs()) {
 			String text = p.getText();
 			ParagraphLink paragraphLink = new ParagraphLink();
 			List<Link> links = new ArrayList<Link>();
-			// text = removeTemplates(text);
-			//text = text.replace("\n", " ").trim();
 			text = text.replace("\n", " ");
-			wikiText.append(articleSummarizer.cleanWikiText(text));
+			//wikiText.append(articleSummarizer.cleanWikiText(text));
+			wikiText.append(text.toString() + " ");
+			
 			//Logic to Add the Paragraphs and Links associated with it in a JSON Element.
 			if (!text.isEmpty()){
 				paragraphs.add(text);
 				for(de.tudarmstadt.ukp.wikipedia.parser.Link t: p.getLinks()){
-					if (t.getType() == de.tudarmstadt.ukp.wikipedia.parser.Link.type.INTERNAL)
-						links.add(new Link(t.getTarget(), t.getText(), t.getPos().getStart(), t.getPos().getEnd()));
+					if (t.getType() == de.tudarmstadt.ukp.wikipedia.parser.Link.type.INTERNAL){
+						if (t.getPos().getStart() != t.getPos().getEnd()){
+							
+							links.add(new Link(t.getTarget(), t.getText(), t.getPos().getStart(), t.getPos().getEnd()));
+							
+							if (i==0)
+								iLinks.add(new Link(t.getTarget(), t.getText(), t.getPos().getStart(), t.getPos().getEnd()));
+							else
+								iLinks.add(new Link(t.getTarget(), t.getText(), (t.getPos().getStart() + paraLength), (t.getPos().getEnd() + paraLength)));
+						}
+					}
 				}
 				paragraphLink.setParaText(text);
 				paragraphLink.setLinks(links);
 				paraLinks.add(paragraphLink);
+				i++;
+				prevPara = text.toString();
+				paraLength += prevPara.length() + 1;
 			}
+			else
+				paraLength +=1;
 		}
 		article.setParagraphs(paragraphs);
 		article.setParagraphsLink(paraLinks);
 		article.setWikiText(wikiText.toString());
+		article.setLinks(iLinks);
 	}
 
 	private void setLists(Article article, ParsedPage page) {
