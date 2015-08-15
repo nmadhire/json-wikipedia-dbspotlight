@@ -562,8 +562,13 @@ public class ModularParser implements MediaWikiParser,
 
 		if (calculateSrcSpans)
 		{
-			sc.setSrcSpan(new SrcSpan(sm.getSrcPos(lineSpans.getFirst()
-					.getStart()), -1));
+            try {
+                sc.setSrcSpan(new SrcSpan(sm.getSrcPos(lineSpans.getFirst()
+                        .getStart()), -1));
+            }
+            catch(Exception e){
+                System.out.println("Parse error :" + sm.toString());
+            }
 		}
 
 		// Identify the Line Type and call the necessary Function for the
