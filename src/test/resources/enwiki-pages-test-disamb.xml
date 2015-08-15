@@ -1,0 +1,210 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <siteinfo>
+    <sitename>Wikipedia</sitename>
+    <dbname>enwiki</dbname>
+    <base>http://en.wikipedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.25wmf23</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">Wikipedia</namespace>
+      <namespace key="5" case="first-letter">Wikipedia talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+      <namespace key="100" case="first-letter">Portal</namespace>
+      <namespace key="101" case="first-letter">Portal talk</namespace>
+      <namespace key="108" case="first-letter">Book</namespace>
+      <namespace key="109" case="first-letter">Book talk</namespace>
+      <namespace key="118" case="first-letter">Draft</namespace>
+      <namespace key="119" case="first-letter">Draft talk</namespace>
+      <namespace key="446" case="first-letter">Education Program</namespace>
+      <namespace key="447" case="first-letter">Education Program talk</namespace>
+      <namespace key="710" case="first-letter">TimedText</namespace>
+      <namespace key="711" case="first-letter">TimedText talk</namespace>
+      <namespace key="828" case="first-letter">Module</namespace>
+      <namespace key="829" case="first-letter">Module talk</namespace>
+      <namespace key="2600" case="first-letter">Topic</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Alien</title>
+    <ns>0</ns>
+    <id>579</id>
+    <revision>
+      <id>643390431</id>
+      <parentid>643390380</parentid>
+      <timestamp>2015-01-20T16:54:51Z</timestamp>
+      <contributor>
+        <username>Panyd</username>
+        <id>5561369</id>
+      </contributor>
+      <minor />
+      <comment>Reset pending changes settings for [[Alien]]: Removing pending changes</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">{{pp-vandalism|expiry=20 January 2016|small=yes}}
+{{Use dmy dates|date=June 2013}}
+{{Wiktionary|alien|aliens}}
+'''Alien''' may refer to:
+* [[Extraterrestrial life]], life which does not originate from Earth
+* [[Alien (law)]], a non-citizen inhabitant of a country
+
+{{TOC right}}
+
+==Science and technology==
+&lt;!--keep at top--&gt;
+* [[Introduced species]], a species not native to its environment
+* [[Alien (software)]], a Linux program
+* [[AliEn (ALICE Environment)]], a grid framework
+* [[Alien Technology]], a manufacturer of RFID technology
+* ''Aliens'', a newsletter of the IUCN [[Invasive Species Specialist Group]]
+
+==Entertainment==
+
+===Film===
+* [[Alien (film)|''Alien'' (film)]], a 1979 film by Ridley Scott
+** [[Aliens (film)|''Aliens'' (film)]], the 1986 sequel by James Cameron
+** [[Alien (franchise)|''Alien'' (franchise)]], the film franchise, including other sequels
+** [[Alien (creature in Alien franchise)|Alien (creature in ''Alien'' franchise)]]
+** [[Alien (soundtrack)|''Alien'' (soundtrack)]]
+** [[Aliens (soundtrack)|''Aliens'' (soundtrack)]]
+** [[Aliens (novel series)|''Aliens'' (novel series)]]
+** [[Aliens (comic book)|''Aliens'' (comic book)]]
+* [[The Alien (film)|''The Alien'' (film)]], an incomplete 1960s Indian-American film
+
+===Music===
+* [[Alien (album)|''Alien'' (album)]], by Strapping Young Lad
+* [[Alien (band)]], a 1980s Swedish rock group
+* [[The Aliens (Scottish band)]], a 2005–present rock group
+* [[The Aliens (Australian band)]], a 1970s new wave group
+* [[Alien (Pennywise song)|&quot;Alien&quot; (Pennywise song)]]
+* [[Alien (Third Day song)|&quot;Alien&quot; (Third Day song)]]
+* [[Alien (Britney Spears song)|&quot;Alien&quot; (Britney Spears song)]]
+* &quot;Alien&quot;, a song by Bush on the album ''[[Sixteen Stone]]''
+* &quot;Alien&quot;, a song by Erasure on the album ''[[Loveboat (album)|Loveboat]]''
+* &quot;Alien&quot;, a song by Japan on the album ''[[Quiet Life]]''
+* &quot;Alien&quot;, a song by Lamb on the album ''[[Fear of Fours]]''
+* &quot;Alien&quot;, a song by Nerina Pallot on the album ''[[Dear Frustrated Superstar]]''
+* &quot;Alien&quot;, a song by P-Model on the album ''[[Landsale (P-Model album)|Landsale]]''
+* &quot;Alien&quot;, a song by Thriving Ivory on [[Thriving Ivory (album)|their self-titled album]]
+* &quot;Alien&quot;, a song by Tokio Hotel on the album ''[[Humanoid (album)|Humanoid]]''
+* &quot;The Aliens&quot;, a song by [[Warlord (band)|Warlord]]
+
+===Other===
+* [[Aliens (Tappan Wright novel)|''Aliens'' (Tappan Wright novel)]], a 1902 novel by Mary Tappan Wright
+* [[The Alien (Animorphs)|''The Alien'' (Animorphs)]], the eighth book in the ''Animorphs'' series
+* [[Aliens (Kaypro video game)|''Aliens'' (Kaypro video game)]], a text-only clone of ''Space Invaders'' written for the CP/M operating system
+
+==Other uses==
+* [[Alien (shipping company)]], a Russian company
+* [[Alien (literary concept)]]
+* [[Alien Sun]] (born 1974), Singaporean actress
+* ''Alien'', a perfume by [[Thierry Mugler#Fragrances|Thierry Mugler]]
+
+== See also ==
+* [[Astrobiology]]
+* [[List of Alien and Predator games|List of ''Alien'' and ''Predator'' games]]
+* &quot;My Alien&quot;, a song by Simple Plan on the album ''[[No Pads, No Helmets... Just Balls]]''
+* [[Alians]], an Islamic order
+* ''[[ATLiens]]'', a 1996 album by OutKast
+* {{Lookfrom|Alien}}
+* {{Intitle|Alien}}
+
+{{disambiguation}}</text>
+      <sha1>esc7g9tvymhdxdgc722qo8ktkto51zo</sha1>
+    </revision>
+  </page>
+  <page>
+    <title>Austin (disambiguation)</title>
+    <ns>0</ns>
+    <id>590</id>
+    <revision>
+      <id>647457181</id>
+      <parentid>624799591</parentid>
+      <timestamp>2015-02-16T21:58:14Z</timestamp>
+      <contributor>
+        <ip>174.3.125.23</ip>
+      </contributor>
+      <comment>not an article</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">{{wiktionary|Austin}}
+'''Austin''' is an English language contracted form of [[Augustine (given name)|Augustine]].
+'''Austin''' may refer to:
+{{TOC right}}
+
+==Geographical locations==
+
+===Australia===
+*[[Austin, Western Australia]]
+
+===Canada===
+*[[Austin, Manitoba]]
+*[[Austin, Ontario]]
+*[[Austin, Quebec]]
+*[[Austin Island]], Nunavut
+
+===United States of America===
+*[[Austin, Arkansas]]
+*[[Austin, Colorado]]
+* Austin, Illinois:
+** [[Austin Township, Macon County, Illinois]]
+**[[Austin, Chicago]], Cook County, Illinois
+*[[Austin, Indiana]]
+*[[Austin, Kentucky]]
+*[[Austin, Minnesota]]
+*[[Austin, Nevada]]
+*[[Austin, Oregon]]
+*[[Austin, Texas]], the capital of the U.S. state of Texas.
+*[[Austin County, Texas]] (note that the city of Austin is located in Travis County)
+
+==People==
+*[[Austin (name)]]
+
+==Schools==
+*[[Austin College]], Sherman, Texas
+*[[University of Texas at Austin]], flagship institution of the University of Texas System
+*[[Austin Peay State University]], Clarksville, Tennessee
+
+==Religion==
+*[[Augustine of Hippo]] or [[Augustine of Canterbury]]
+*An adjective for the [[Augustinians]]
+
+==Business==
+*[[Austin Automobile Company]], short-lived American automobile company
+*[[Austin (brand)]], a brand owned by the Kellogg Company
+*[[Austin Motor Company]], British car manufacturer
+*[[American Austin Car Company]], short-lived American automobile maker
+
+==Entertainment==
+*[[Austin (song)|&quot;Austin&quot; (song)]], a single by Blake Shelton
+*Austin, a kangaroo [[Beanie Baby]] produced by Ty, Inc.
+*Austin the kangaroo from the children's television series ''[[The Backyardigans]]''
+
+==Other uses==
+*[[USS Austin|USS ''Austin'']], three ships
+*[[Austin Station (disambiguation)]], various public transportation stations
+
+==See also==
+*[[Austen (disambiguation)]]
+*[[Augustine (disambiguation)]]
+*[[Special:Prefixindex/Austin|All pages beginning with Austin]]
+
+{{disambiguation|geo}}</text>
+      <sha1>qy8znhns1vtporoctb3dyrnr8omdbwh</sha1>
+    </revision>
+  </page>
+</mediawiki>

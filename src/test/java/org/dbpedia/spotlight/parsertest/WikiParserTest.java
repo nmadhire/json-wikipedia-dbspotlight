@@ -46,9 +46,9 @@ public class WikiParserTest {
 		
 		URL mediaWiki = Thread.currentThread().getContextClassLoader().getResource("wikisample.xml");
 		assertNotNull(mediaWiki);
-		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/tmp/wikisample.json", Language.EN);
+		WikipediaArticleReader wap = new WikipediaArticleReader(mediaWiki.getFile(),"/wikisample.json", Language.EN);
 		wap.start();
-		String [] json = IOUtils.getFileAsUTF8String("/tmp/wikisample.json").split("\n");
+		String [] json = IOUtils.getFileAsUTF8String("/wikisample.json").split("\n");
 		
 		for(int i =0; i < json.length; i++){
 			Article a = Article.fromJson(json[i]);

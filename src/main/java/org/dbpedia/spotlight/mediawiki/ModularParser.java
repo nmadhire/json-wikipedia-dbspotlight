@@ -51,6 +51,7 @@ public class ModularParser implements MediaWikiParser,
 	private boolean deleteTags = true;
 	private boolean showMathTagContent = true;
 	private boolean calculateSrcSpans = true;
+	private String lastTemplate;
 
 	/**
 	 * Creates a unconfigurated Parser...
@@ -224,6 +225,16 @@ public class ModularParser implements MediaWikiParser,
 	{
 		this.calculateSrcSpans = calculateSrcSpans;
 	}
+	
+	
+	@Override
+	public String getLastTemplate() {
+		return lastTemplate;
+	}
+
+	public void setLastTemplate(String lastTemplate) {
+		this.lastTemplate = lastTemplate;
+	}
 
 	/**
 	 * Converts a List of Strings to lower case Strings.
@@ -374,7 +385,7 @@ public class ModularParser implements MediaWikiParser,
 		// Parseing the Templates (the Span List will be added to the managed
 		// lists by the function)
 		parseTemplates(sm, cepp.templateSpans, cepp.templates, ppResult);
-		
+
 		//Deleting Templates from the Media Text. To get the plain text.
 		
 		for (Span s: cepp.templateSpans){
@@ -383,15 +394,12 @@ public class ModularParser implements MediaWikiParser,
 		
 		sm.removeManagedList(cepp.templateSpans);
 		// Parsing all other Tags
-		//System.out.println("Naveen Before parsing tags: " + sm.toString());
 		parseTags(sm, cepp.tagSpans);
 
 		// Converting &lt;gallery>s to normal Images, this is not beautiful, but
 		// a simple solution..
-		//System.out.println("Naveen Before gallery convert: " + sm.toString());
 		convertGalleriesToImages(sm, cepp.tagSpans);
 		// Parsing Links and Images.
-		//System.out.println("Naveen Before parsing: " + sm.toString());
 		parseImagesAndInternalLinks(sm, cepp.linkSpans, cepp.links);
 		// Creating a list of Line Spans to work with lines in the following
 		// functions
@@ -928,7 +936,6 @@ public class ModularParser implements MediaWikiParser,
 		
 		while ((s = getTag(sm, s.getEnd())) != null)
 		{
-		    //System.out.println("Naveen Tag Span: " + sm.substring(s));
 			//spans.add(s);
 		    //Logic to remove ref tags such as <ref> </ref> from the Article text
 		    if(sm.substring(s.getStart(), s.getEnd()).contains("/>")){
@@ -972,7 +979,8 @@ public class ModularParser implements MediaWikiParser,
 			}
 			templateOpenTags.push(pos);
 		}
-
+		
+		boolean isLastTemplate = true;
 		while (!templateOpenTags.empty())
 		{
 			int templateOpenTag = templateOpenTags.pop();
@@ -1000,7 +1008,11 @@ public class ModularParser implements MediaWikiParser,
 			}
 
 			Span ts = new Span(templateOpenTag, templateCloseTag + 2);
-
+			if (isLastTemplate){
+				lastTemplate = sm.substring(new Span(templateOpenTag + 2,templateCloseTag));
+				isLastTemplate = false;
+			}
+				
 			Template t = new Template(ts, encodeWikistyle(sm.substring(
 					templateOpenTag + 2, templateNameEnd).trim()),
 					templateOptions);

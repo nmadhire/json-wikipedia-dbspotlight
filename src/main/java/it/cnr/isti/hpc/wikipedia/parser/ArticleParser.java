@@ -89,7 +89,7 @@ public class ArticleParser {
 		setRedirect(article, mediawiki);
 
 		parse(article, page);
-
+		setDisambiguation(article);
 	}
 
 	private void parse(Article article, ParsedPage page) {
@@ -111,7 +111,8 @@ public class ArticleParser {
 			setLists(article, page);
 		}
 		setRedirect(article);
-		setDisambiguation(article);
+		//Commenting here and moving into above parse method
+		//setDisambiguation(article);
 		setIsList(article);
 	}
 
@@ -496,11 +497,20 @@ public class ArticleParser {
 	}
 
 	private void setDisambiguation(Article a) {
-
-		for (String disambiguation : locale.getDisambigutionIdentifiers()) {
+		
+		//Modified the disambugation logic to fetch from the Disamb Map
+		for (String disambiguation : locale.getDisambigutionIdentifiers(lang)) {
 			if (StringUtils.containsIgnoreCase(a.getTitle(), disambiguation)) {
 				a.setType(Type.DISAMBIGUATION);
 				return;
+			}
+			
+			if (parser.getLastTemplate() !=null){
+				if (parser.getLastTemplate().equals(disambiguation)){
+					a.setType(Type.DISAMBIGUATION);
+					return;
+				}
+					
 			}
 			/*for (Template t : a.getTemplates()) {
 				if (StringUtils.equalsIgnoreCase(t.getName(), disambiguation)) {

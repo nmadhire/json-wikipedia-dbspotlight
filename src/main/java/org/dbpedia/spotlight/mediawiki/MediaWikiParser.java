@@ -34,4 +34,9 @@ public interface MediaWikiParser {
 	 * will be "\n" or "\r\n"
 	 */
 	public String getLineSeparator();
+	
+	/*
+	 * Returns the last template of the article. Last template would be used to identify disambiguation pages 
+	 */
+	public String getLastTemplate();
 }
