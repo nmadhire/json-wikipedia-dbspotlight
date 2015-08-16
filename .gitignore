@@ -6,3 +6,4 @@ target/
 javadoc
 .idea/
 json-wikipedia.iml
+logback.xml
