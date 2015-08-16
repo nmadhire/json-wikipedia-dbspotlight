@@ -90,6 +90,11 @@ public class ArticleParser {
 
 		parse(article, page);
 		setDisambiguation(article);
+
+        //Ignoring Articles with No text
+        //Example  - https://nl.wikipedia.org/wiki/MediaWiki:Signupend
+        if ((article.getType() == Type.ARTICLE) && (article.getText().length() ==0))
+            article.setType(Type.UNKNOWN);
 	}
 
 	private void parse(Article article, ParsedPage page) {

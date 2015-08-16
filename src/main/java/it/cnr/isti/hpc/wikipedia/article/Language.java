@@ -26,5 +26,6 @@ public class Language {
 	
 	public static final String EN = "en";
 	public static final String IT = "it";
+    public static final String NL = "nl";
 
 }
